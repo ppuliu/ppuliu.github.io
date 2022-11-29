@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html class="dark dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>
+	Marketing 3.0</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+<script src="./js/jquery.min.js"></script>
+
+<title>
+	Marketing 3.0
+</title>
+
+<h2>
+	
+</h2>
+<p class="subtext">
+	
+</p>
+
+<style>
+	:root {
+		--global-background-color: #fbfaf8;
+		--global-text-color: #1c1c1c;
+		--global-link-color: #1c1c1c;
+		--global-border-color: #dddddd;
+	}
+	:root.dark {
+		--global-background-color: #111;
+		--global-text-color: #fff;
+		--global-link-color:#fff;
+		--global-border-color:#30363d;
+	}
+	html.dark ::-webkit-scrollbar {
+		height: 12px;
+		width: 12px;
+		background: #2c2c2c;
+	}
+	html.dark ::-webkit-scrollbar-thumb {
+		background: #6b6b6c;
+		-webkit-border-radius: 1ex;
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+	}
+	html.dark ::-webkit-scrollbar-corner {
+		background: #2c2c2c;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	body,input,select,textarea,a {
+		color: var(--global-link-color);
+	}
+	body,input,select,textarea {
+		font-family: monospace;
+		font-family: -apple-system,"system-ui","Segoe UI",sans-serif;
+		background: var(--global-background-color);
+	}
+	input,select,textarea,.button {
+		padding: 14px;
+		border-radius: 12px;
+		border: 1px solid rgba(255,255,255,0.2);
+		font-size: 16px;
+		background: #161616;
+	}
+	input:focus,select:focus,textarea:focus {
+		outline: 2px solid #f47353;
+	}
+	body {
+		margin:0;
+		padding:0;
+		background:var(--global-background-color);
+		color:var(--global-text-color);
+		text-align: center;
+		font-family: -apple-system,"system-ui","Segoe UI",sans-serif;
+		overflow-x:hidden;
+	}
+	.style_demo {
+		z-index:1;
+		position:relative;
+		text-align:center;
+		width:100%;
+		max-width:1200px;
+		margin:0 auto;
+	}
+
+	.style_demo_selector img,
+	.style_demo_samples img,
+	.size_comparison img:hover {
+		opacity:0.75;
+	}
+	.size_comparison img:active {
+		opacity:0.5;
+	}
+
+	.style_demo_selector img {
+		background:;
+		border-radius:12px;
+		width:128px;
+		height:128px;
+		margin:14px;
+		cursor:pointer;
+		border:2px solid var(--global-background-color);
+	}
+	@media (max-width:1000px) {
+		.style_demo_selector img {
+			margin:7px;
+			width:100px;
+			height:100px;
+		}
+	}
+	.style_demo_selector img:hover {
+		opacity:0.5;
+	}
+	.style_demo_selector img:active {
+		opacity:0.3;
+	}
+	.style_demo_selector img.active {
+		border:2px solid var(--global-text-color);
+	}
+	.style_demo_selector.active {
+		border:2px solid var(--global-text-color);
+	}
+	.style_demo_samples {
+		margin:0 auto;
+		display:none;
+	}
+	.style_demo_samples.active {
+		display:block;
+	}
+	.style_demo_samples img {
+		border-radius:12px;
+		width:256px;
+		height:256px;
+		vertical-align: top;
+/*		cursor:pointer;*/
+	}
+/*	.style_demo_samples img:hover {
+		opacity:0.75;
+	}
+	.style_demo_samples img:active {
+		opacity:0.5;
+	}*/
+	@media (min-width:1000px) {
+		.style_demo_samples img.big {
+			height:calc(512px + 14px);
+			width:calc(512px + 14px);
+			height:calc(512px + 13px); /* hot fix for alignment */
+		}
+		.style_demo_samples .img-container.right {
+			float:right;
+		}
+		.style_demo_samples .img-container.right img.big {
+			height:calc(512px + 14px);  /* hot fix for 2nd alignment */
+		}
+		.style_demo_samples .img-container {
+			float:left;
+		}
+		.style_demo_samples {
+			width:calc(512px + 14px + 256px + 14px + 14px);
+		}
+	}
+	@media (min-width:1300px) {
+		.style_demo_samples {
+			width:calc(512px + 14px + 256px + 14px + 256px + 14px + 14px);
+		}
+	}
+
+	.size_comparison img {
+		margin:0;
+		display:block;
+	    max-width: 100%;
+    	object-fit: cover;
+	}
+	.size_comparison .img-container,
+	.style_demo_samples .img-container {
+		position:relative;
+		vertical-align: top;
+		margin:7px;
+		display:inline-block;
+	}
+	.style_demo_samples .img-container img {
+		display:block;
+		margin:0;
+	}
+	.size_comparison .img-container .label,
+	.style_demo_samples .img-container .label {
+		font-size: 12px;
+		position: absolute;
+		background: rgba(0,0,0,0.5);
+		bottom: 0;
+		right: 0;
+		padding: 3.5px;
+		border-bottom-right-radius: 12px;
+		z-index: 1;
+		color:#fff;
+		border-top-left-radius:12px;
+		padding-left:7px;
+		font-weight: bold;
+	}
+	.arrow_1 {
+		transform: scaleX(-120%) rotate(598deg);
+		width: 50px;
+		margin-top: 22px;
+		margin-bottom: 12px;
+		margin-left: -25px;
+	}
+	.arrow_label {
+		margin-top: 22px;
+		margin-bottom: -50px;
+		margin-left: 220px;
+		color:var(--global-text-color);
+		font-family: 'Caveat', cursive;
+		font-size:36px;
+	}
+	.arrow_2 {
+		transform: scaleX(-120%) rotate(428deg);
+		width: 100px;
+		margin-top: 0;
+		margin-bottom: 12px;
+		margin-left: 10px;
+	}
+	html.dark .arrow_1,
+	html.dark .arrow_2 {
+		filter: invert(1) brightness(2);
+	}
+	h2 {
+		font-size:28px;
+	}
+	.logo {
+		cursor:pointer;
+		z-index:1000;
+		top:14px;
+		left:21px;
+		color:#fff;
+		font-weight:bold;
+		position:fixed;
+		font-size:24px;
+		text-shadow:2px 2px 5px rgb(0 0 0 / 70%);
+		text-transform: uppercase;
+	}
+	.logo a {
+		text-decoration: none;
+	}
+	.logo:hover {
+		opacity:0.75;
+	}
+	.logo:active {
+		opacity:0.5;
+	}
+	.by-levelsio {
+		display: block;
+		padding: 7px;
+		font-size: 14px;
+		margin: 0;
+		background: #fff;
+		color: #000;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		border-top: 1px solid rgba(255,255,255,0.2);
+		border-left: 1px solid rgba(255,255,255,0.2);
+		border-top-left-radius: 12px;
+		z-index: 100;
+		font-weight: bold;
+		text-decoration: none;
+	}
+	.size_comparison .img-container {
+		border-radius:12px;
+		margin:14px;
+		overflow:hidden;
+	}
+	.size_comparison img {
+		width:512px;
+		height:auto;
+	}
+	@media (max-width:1500px) {
+		.size_comparison img {
+			width:256px;
+		}
+	}
+	.divider {
+		display:block;
+		height:125px;
+		margin-bottom:75px;
+		width:100vw;
+		border-bottom:1px solid var(--global-border-color);
+	}
+	h1,h2,h3 {
+		padding-left:14px;
+		padding-right:14px;
+	}
+	p {
+		padding-left:14px;
+		padding-right:14px;
+		margin:14px auto;
+		max-width:800px;
+		line-height:1.75;
+	}
+	p.subtext {
+		margin-bottom:56px;
+	}
+</style>
+
+<style>
+	.upload-studio {
+		width:100%;
+		max-width:1100px;
+		display:block;
+		margin:0 auto;
+		text-align: left;
+		margin-top:28px;
+	}
+	.upload-studio .left,
+	.upload-studio .right {
+		padding:14px;
+	}
+	.upload-studio .left {
+		width:50%;
+		display:inline-block;
+		text-align: left;
+	}
+	.upload-studio .right {
+		width:50%;
+		display:inline-block;
+		text-align: left;
+		float:right;
+	}
+	.upload-studio .right .button.big {
+		width:calc(100% - 14px - 14px);
+	}
+	@media (max-width:1000px) {
+		.upload-studio .right {
+			margin-top:-28px;
+		}
+		.upload-studio .left,
+		.upload-studio .right {
+			width:100%;
+			display:block;
+			float:none;
+			text-align: left;
+		}
+	}
+	.button {
+		text-decoration: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		background: #fff;
+		border: 1px solid #fff;
+		font-weight: bold;
+		border-radius: 12px;
+		display: inline-block;
+		margin: 14px;
+		padding: 9px;
+		cursor: pointer;
+		font-size: 16px;
+		text-align: center;
+		color: #000;
+	}
+	.button:hover {
+		background: none;
+		color: #fff;
+	}
+	.button:active {
+		opacity: 0.5;
+	}
+	.button.reverse {
+		background: none;
+		color: #fff;
+	}
+	.button.reverse:hover {
+		background: #fff;
+		color: #000;
+		opacity: 1;
+	}
+	.button.big.reverse:hover,
+	.button.big {
+		background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
+		background: linear-gradient(60deg,#f79533,#f37055,#ef4e7b,#a166ab,#5073b8,#1098ad,#07b39b,#6fba82);
+		-webkit-animation: animatedgradient 6s ease infinite alternate;
+		animation: animatedgradient 6s ease infinite alternate;
+		background-size: 300% 300%;
+		border: 1px solid rgba(0,0,0,0);
+		color: #fff;
+		padding-left: 14px;
+		padding-right: 14px;
+		font-size: 24px;
+		padding: 21px;
+		padding-left: 28px;
+		padding-right: 28px;
+	}
+	.button.big.reverse:hover {
+		opacity: 1;
+	}
+
+	.button.big.reverse,
+	.button.big:hover {
+	    border: 1px solid #fff;
+    	background: none;
+	}
+	.photo-guidelines {
+	    padding-left: 7px;
+		padding-right: 7px;
+		margin: 14px auto;
+		max-width: 800px;
+	}
+	.photo-guidelines div {
+		width:100px;
+		display:inline-block;
+		margin:7px;
+		vertical-align: top;
+		text-align: center;
+		font-size:12px;
+		width:calc(calc(100% - 14px - 14px - 14px - 14px - 14px) / 4);
+	}
+	.photo-guidelines img {
+		width:100%;
+		max-width:100px;
+		height:100px;
+		border-radius:12px;
+		background:#fff;
+		margin:0;
+	}
+	@media (max-width:800px) {
+		.photo-guidelines div {
+			font-size:10px;
+		}
+		.photo-guidelines img {
+			max-width:75px;
+			height:75px;
+		}
+	}
+	.start-pane {
+		text-align: left;
+	}
+</style>
+
+<div class="style_demo">
+
+	<div class="arrow_label">
+		Click to try!
+	</div>
+
+	<img src="./arrow.png" class="arrow_1">
+
+	<div class="style_demo_selector">
+
+		<img class="active" loading="lazy" data-class="dresser" src="./dresser/input.png">
+		<img class="" loading="lazy" data-class="chair" src="./chair/input.png">
+		<img class="" loading="lazy" data-class="table" src="./table/input.png">
+			
+	</div>
+
+	<img src="./arrow2.png" class="arrow_2">
+
+	<script>
+		$(function() {
+
+			$('.action-scroll-down').bind('click',function() {
+				$(window).scrollTop(
+					$('.upload-studio').offset().top
+				);
+			});
+
+			$('.style_demo_selector img').bind('click',function() {
+				var imgClass=$(this).data('class');
+				$('.style_demo_samples').hide();
+				$('.style_demo_samples.'+imgClass).show();
+				$('.style_demo_selector img').removeClass('active');
+				$(this).addClass('active');
+				
+			});
+		});
+	</script>
+
+
+	<div class="style_demo_samples dresser active">					
+		
+		<div class="img-container"><img class="big" loading="lazy" src="./dresser/6_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/1_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/2_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/3_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/33_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/5_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/7_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/8_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/163_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/164_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/165_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/9_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/10_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/11_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/12_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/13_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/14_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/15_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/16_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/17_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/18_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/19_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/20_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/21_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/22_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/23_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/24_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/25_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/26_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/27_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/28_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/29_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/30_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/31_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/32_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/4_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/34_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/35_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/36_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/37_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/38_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/39_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/40_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/41_.png"></div>
+		
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/43_.png"></div>
+		<div class="img-container right"><img class="big" loading="lazy" src="./dresser/42_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/44_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/45_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/46_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/47_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/48_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/49_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/50_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/51_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/52_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/53_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/54_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/55_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/56_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/57_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/58_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/59_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/60_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/61_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/62_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/63_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/64_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/65_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/66_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/67_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/68_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/69_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/70_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/71_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/72_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/73_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/74_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/75_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/76_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/77_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/78_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/79_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/80_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/81_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/82_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/83_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/84_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/85_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/86_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/87_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/88_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/89_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/90_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/91_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/92_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/93_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/94_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/95_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/96_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/97_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/98_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/99_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/100_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/101_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/102_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/103_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/104_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/105_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/106_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/107_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/108_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/109_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/110_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/111_.png"></div>
+		<div class="img-container"><img class="big" loading="lazy" src="./dresser/112_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/113_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/114_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/115_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/116_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/117_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/118_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/119_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/120_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/121_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/122_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/123_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/124_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/125_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/126_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/127_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/128_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/129_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/130_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/131_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/132_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/133_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/134_.png"></div>
+		
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/136_.png"></div>
+
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/137_.png"></div>
+		<div class="img-container right"><img class="big" loading="lazy" src="./dresser/135_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/138_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/139_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/140_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/141_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/142_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/143_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/144_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/145_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/146_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/147_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/148_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/149_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/150_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/151_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/152_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/153_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/154_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/155_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/156_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/157_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/158_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/159_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/160_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/161_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/162_.png"></div>
+		
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/166_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/167_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/168_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/169_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./dresser/170_.png"></div>
+
+	</div>
+
+	<div class="style_demo_samples chair ">					
+		<div class="img-container"><img class="big" loading="lazy" src="./chair/1_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/2_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/3_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/4_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/5_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/6_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/7_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/8_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/9_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/10_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/11_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/12_.png"></div>
+		<!-- <div class="img-container"><img class="" loading="lazy" src="./chair/13_.png"></div> -->
+		<div class="img-container"><img class="" loading="lazy" src="./chair/14_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/15_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/16_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/17_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./chair/18_.png"></div>
+	</div>
+
+	<div class="style_demo_samples table ">					
+		<div class="img-container"><img class="big" loading="lazy" src="./table/2_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./table/1_.png"></div>
+		<div class="img-container"><img class="" loading="lazy" src="./table/3_.png"></div>
+	</div>
+</div>
